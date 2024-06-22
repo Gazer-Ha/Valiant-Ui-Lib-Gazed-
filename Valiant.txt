@@ -222,6 +222,7 @@ ToggleHideButton.MouseButton1Click:Connect(ToggleVisibility)
 				end)
 			end
 		end)
+		
 		Frame.InputChanged:Connect(function(input)
 			if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
 				dragInput = input
@@ -234,12 +235,37 @@ ToggleHideButton.MouseButton1Click:Connect(ToggleVisibility)
 		end)
 	end
 
+function dragify2(Frame)
+		dragToggle = nil
+		local dragSpeed = 0.25
+		dragInput = nil
+		dragStart = nil
+		local dragPos = nil
+		function updateInput(input)
+			local Delta = input.Position - dragStart
+			local Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
+			TS:Create(Frame, TweenInfo.new(0.25), {Position = Position}):Play()
+		end
+		Frame.InputBegan:Connect(function(input)
+			if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and UIS:GetFocusedTextBox() == nil then
+				dragToggle = true
+				dragStart = input.Position
+				startPos = Frame.Position
+				input.Changed:Connect(function()
+					if input.UserInputState == Enum.UserInputState.End then
+						dragToggle = false
+					end
+				end)
+			end
+		end)
+
+
 	dragify(Window)
 	TS:Create(Window, TweenInfo.new(0.5), {Size = UDim2.new(0, 600, 0, 0)}):Play()
 	repeat wait() until Window.Size == UDim2.new(0, 600, 0, 0)
 	wait(0.1)
 	TS:Create(Window, TweenInfo.new(0.5), {Size = UDim2.new(0, 600, 0, 400)}):Play()
-dragify(ToggleHideButton)
+dragify2(ToggleHideButton)
 	--end
 	local tabs = {}
 
