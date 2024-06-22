@@ -199,65 +199,91 @@ ToggleHideButton.MouseButton1Click:Connect(ToggleVisibility)
 	end)
 
 
-	function dragify(Frame)
-		dragToggle = nil
-		local dragSpeed = 0.25
-		dragInput = nil
-		dragStart = nil
-		local dragPos = nil
-		function updateInput(input)
-			local Delta = input.Position - dragStart
-			local Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
-			TS:Create(Frame, TweenInfo.new(0.25), {Position = Position}):Play()
-		end
-		Frame.InputBegan:Connect(function(input)
-			if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and UIS:GetFocusedTextBox() == nil then
-				dragToggle = true
-				dragStart = input.Position
-				startPos = Frame.Position
-				input.Changed:Connect(function()
-					if input.UserInputState == Enum.UserInputState.End then
-						dragToggle = false
-					end
-				end)
-			end
-		end)
-		
-		Frame.InputChanged:Connect(function(input)
-			if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-				dragInput = input
-			end
-		end)
-		game:GetService("UserInputService").InputChanged:Connect(function(input)
-			if input == dragInput and dragToggle then
-				updateInput(input)
-			end
-		end)
+	
+-- Dragify function
+function dragify(Frame)
+	local dragToggle = nil
+	local dragInput = nil
+	local dragStart = nil
+	local startPos = nil
+
+	local function updateInput(input)
+		local Delta = input.Position - dragStart
+		local Position = UDim2.new(
+			startPos.X.Scale, startPos.X.Offset + Delta.X,
+			startPos.Y.Scale, startPos.Y.Offset + Delta.Y
+		)
+		TS:Create(Frame, TweenInfo.new(0.25), {Position = Position}):Play()
 	end
 
-function dragify2(Frame)
-		dragToggle = nil
-		local dragSpeed = 0.25
-		dragInput = nil
-		dragStart = nil
-		local dragPos = nil
-		function updateInput(input)
-			local Delta = input.Position - dragStart
-			local Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
-			TS:Create(Frame, TweenInfo.new(0.25), {Position = Position}):Play()
+	Frame.InputBegan:Connect(function(input)
+		if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and UIS:GetFocusedTextBox() == nil then
+			dragToggle = true
+			dragStart = input.Position
+			startPos = Frame.Position
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragToggle = false
+				end
+			end)
 		end
-		Frame.InputBegan:Connect(function(input)
-			if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and UIS:GetFocusedTextBox() == nil then
-				dragToggle = true
-				dragStart = input.Position
-				startPos = Frame.Position
-				input.Changed:Connect(function()
-					if input.UserInputState == Enum.UserInputState.End then
-						dragToggle = false
-					end
-				end)
-			end
-		end)
+	end)
+	
+	Frame.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+			dragInput = input
+		end
+	end)
+
+	UIS.InputChanged:Connect(function(input)
+		if input == dragInput and dragToggle then
+			updateInput(input)
+		end
+	end)
+end
+
+-- Another Dragify function (dragify2)
+function dragify2(Frame)
+	local dragToggle2 = nil
+	local dragInput2 = nil
+	local dragStart2 = nil
+	local startPos2 = nil
+
+	local function updateInput2(input)
+		local Delta2 = input.Position - dragStart2
+		local Position2 = UDim2.new(
+			startPos2.X.Scale, startPos2.X.Offset + Delta2.X,
+			startPos2.Y.Scale, startPos2.Y.Offset + Delta2.Y
+		)
+		TS:Create(Frame, TweenInfo.new(0.25), {Position = Position2}):Play()
+	end
+
+	Frame.InputBegan:Connect(function(input)
+		if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and UIS:GetFocusedTextBox() == nil then
+			dragToggle2 = true
+			dragStart2 = input.Position
+			startPos2 = Frame.Position
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragToggle2 = false
+				end
+			end)
+		end
+	end)
+	
+	Frame.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+			dragInput2 = input
+		end
+	end)
+
+	UIS.InputChanged:Connect(function(input)
+		if input == dragInput2 and dragToggle2 then
+			updateInput2(input)
+		end
+	end)
+end
+
 
 
 	dragify(Window)
