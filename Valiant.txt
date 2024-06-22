@@ -62,7 +62,7 @@ ToggleHideButton.MouseButton1Click:Connect(ToggleVisibility)
 
 local UserInputService = game:GetService("UserInputService")
 
-        local MegaGayGui = ToggleHideButton
+        local ToggleHideButton = script.Parent
 
         local dragging
         local dragInput
@@ -71,14 +71,14 @@ local UserInputService = game:GetService("UserInputService")
 
         local function update(input)
         	local delta = input.Position - dragStart
-        	MegaGayGui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+        	ToggleHideButton.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
         end
 
-        MegaGayGui.InputBegan:Connect(function(input)
+        ToggleHideButton.InputBegan:Connect(function(input)
         	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
         		dragging = true
         		dragStart = input.Position
-        		startPos = MegaGayGui.Position
+        		startPos = ToggleHideButton.Position
         		
         		input.Changed:Connect(function()
         			if input.UserInputState == Enum.UserInputState.End then
@@ -88,7 +88,7 @@ local UserInputService = game:GetService("UserInputService")
         	end
         end)
 
-        MegaGayGui.InputChanged:Connect(function(input)
+        ToggleHideButton.InputChanged:Connect(function(input)
         	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
         		dragInput = input
         	end
