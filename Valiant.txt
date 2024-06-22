@@ -41,12 +41,12 @@ ToggleHideButton.Position = UDim2.new(0, 10, 0, 10)
 ToggleHideButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 ToggleHideButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 ToggleHideButton.Text = "Hide"
-ToggleHideButton.Parent = game.CoreGui
+ToggleHideButton.Parent = MyGui
 
 -- Function to toggle MyGui visibility
 local function ToggleVisibility()
-    MyGui.Enabled = not MyGui.Enabled
-    if MyGui.Enabled then
+    Window.Enabled = not MyGui.Enabled
+    if Window.Enabled then
         ToggleHideButton.Text = "Hide"
     else
         ToggleHideButton.Text = "Show"
