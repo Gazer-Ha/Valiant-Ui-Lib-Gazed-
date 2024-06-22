@@ -60,46 +60,7 @@ end
 -- Connect the toggle function to the button click event
 ToggleHideButton.MouseButton1Click:Connect(ToggleVisibility)
 
-local UserInputService = game:GetService("UserInputService")
 
-        local ToggleHideButton = script.Parent
-
-        local dragging
-        local dragInput
-        local dragStart
-        local startPos
-
-        local function update(input)
-        	local delta = input.Position - dragStart
-        	ToggleHideButton.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-        end
-
-        ToggleHideButton.InputBegan:Connect(function(input)
-        	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-        		dragging = true
-        		dragStart = input.Position
-        		startPos = ToggleHideButton.Position
-        		
-        		input.Changed:Connect(function()
-        			if input.UserInputState == Enum.UserInputState.End then
-        				dragging = false
-        			end
-        		end)
-        	end
-        end)
-
-        ToggleHideButton.InputChanged:Connect(function(input)
-        	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-        		dragInput = input
-        	end
-        end)
-
-        UserInputService.InputChanged:Connect(function(input)
-        	if input == dragInput and dragging then
-        		update(input)
-        	end
-        end)
-        
 	MyGui.Name = RandomString
 	MyGui.Parent = cloneref(game:GetService("CoreGui"))
 	MyGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
@@ -278,7 +239,7 @@ local UserInputService = game:GetService("UserInputService")
 	repeat wait() until Window.Size == UDim2.new(0, 600, 0, 0)
 	wait(0.1)
 	TS:Create(Window, TweenInfo.new(0.5), {Size = UDim2.new(0, 600, 0, 400)}):Play()
-
+dragify(ToggleHideButton)
 	--end
 	local tabs = {}
 
