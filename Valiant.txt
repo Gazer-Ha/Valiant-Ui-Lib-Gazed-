@@ -45,11 +45,15 @@ ToggleHideButton.Parent = MyGui
 
 -- Function to toggle MyGui visibility
 local function ToggleVisibility()
-    Window.Enabled = not MyGui.Enabled
-    if Window.Enabled then
+     
+    if Window.Size == UDim2.new(0, 0, 0, 0) then
+        Window.Size = UDim2.new(0, 600,0, 400)
         ToggleHideButton.Text = "Hide"
+        
     else
+    Window.Size = UDim2.new(0, 0, 0, 0)
         ToggleHideButton.Text = "Show"
+        
     end
 end
 
