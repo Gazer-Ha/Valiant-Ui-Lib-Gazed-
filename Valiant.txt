@@ -12,7 +12,7 @@ function library:CreateWindow(name, version, icon)
 	name = name or "Name"
 	version = version or "Version"
 	icon = icon or math.random()
-	local MyGui = Instance.new("ScreenGui")
+	local InsaneGay = Instance.new("ScreenGui")
 	local Window = Instance.new("Frame")
 	local UICorner = Instance.new("UICorner")
 	local TitleBar = Instance.new("Frame")
@@ -30,20 +30,20 @@ function library:CreateWindow(name, version, icon)
 	for i = 1, math.random(3,20) do
 		RandomString = RandomString..string.char(math.random(97,122))
 	end
-	ProtectInstance(MyGui)
+	ProtectInstance(InsaneGay)
 	ProtectInstance(Window)
--- Assuming MyGui is already defined and parented somewhere above this code
+-- Assuming InsaneGay is already defined and parented somewhere above this code
 
--- Create a button to toggle MyGui visibility
+-- Create a button to toggle InsaneGay visibility
 local ToggleHideButton = Instance.new("TextButton")
 ToggleHideButton.Size = UDim2.new(0.1, 0.1, 0.1)
 ToggleHideButton.Position = UDim2.new(0, 10, 0, 10)
 ToggleHideButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 ToggleHideButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 ToggleHideButton.Text = "Hide"
-ToggleHideButton.Parent = MyGui
+ToggleHideButton.Parent = InsaneGay
 
--- Function to toggle MyGui visibility
+-- Function to toggle InsaneGay visibility
 local function ToggleVisibility()
      
     if Window.Size == UDim2.new(0, 0, 0, 0) then
@@ -61,12 +61,12 @@ end
 ToggleHideButton.MouseButton1Click:Connect(ToggleVisibility)
 
 
-	MyGui.Name = RandomString
-	MyGui.Parent = cloneref(game:GetService("CoreGui"))
-	MyGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	InsaneGay.Name = RandomString
+	InsaneGay.Parent = cloneref(game:GetService("CoreGui"))
+	InsaneGay.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 	Window.Name = "Window"
-	Window.Parent = MyGui
+	Window.Parent = InsaneGay
 	Window.BackgroundColor3 = Color3.fromRGB(49, 49, 59)
 	Window.Position = UDim2.new(0.5, -300, 0.600000024, -200)
 	Window.Size = UDim2.new(0, 0, 0, 0)
@@ -168,7 +168,7 @@ ToggleHideButton.MouseButton1Click:Connect(ToggleVisibility)
 		repeat
 			wait()
 		until Window.Size == UDim2.new(0, 0, 0, 0)
-		MyGui:Remove()
+		InsaneGay:Remove()
 	end)
 
 	Minimize.MouseButton1Click:Connect(function()
@@ -1591,7 +1591,7 @@ dragify2(ToggleHideButton)
 				local Sample_2 = Instance.new("ImageLabel")
 
 				Notification2.Name = "Notification 2"
-				Notification2.Parent = MyGui
+				Notification2.Parent = InsaneGay
 				Notification2.BackgroundColor3 = Color3.fromRGB(49, 49, 59)
 				Notification2.Position = UDim2.new(1.25, -390, 0, 900)
 				Notification2.Size = UDim2.new(0, 344, 0, 64)
