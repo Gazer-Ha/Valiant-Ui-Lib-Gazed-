@@ -130,7 +130,7 @@ ToggleHideButton.MouseButton1Click:Connect(ToggleVisibility)
 	Close.Name = "Close"
 	Close.Parent = TitleBar
 	Close.BackgroundTransparency = 1.000
-	Close.Position = UDim2.new(0.953333378, 0, 0.0666666627, 0)
+	Close.Position = UDim2.new(0.933333378, 0, 0.0666666627, 0)
 	Close.Size = UDim2.new(0, 25, 0, 25)
 	Close.ZIndex = 2
 	Close.Image = "rbxassetid://3926305904"
@@ -141,7 +141,7 @@ ToggleHideButton.MouseButton1Click:Connect(ToggleVisibility)
 	Minimize.Parent = TitleBar
 	Minimize.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	Minimize.BackgroundTransparency = 1.000
-	Minimize.Position = UDim2.new(0.953, -24, -0.2, 6)
+	Minimize.Position = UDim2.new(0.923, -24, -0.2, 6)
 	Minimize.Size = UDim2.new(0, 26, 0, 30)
 	Minimize.Image = "http://www.roblox.com/asset/?id=6035067836"
 
