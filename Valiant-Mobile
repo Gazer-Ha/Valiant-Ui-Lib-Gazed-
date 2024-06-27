@@ -12,7 +12,7 @@ function library:CreateWindow(name, version, icon)
 	name = name or "Name"
 	version = version or "Version"
 	icon = icon or math.random()
-	local MyOiledUpNiggers = Instance.new("ScreenGui")
+	local ValiantGui = Instance.new("ScreenGui")
 	local Window = Instance.new("Frame")
 	local UICorner = Instance.new("UICorner")
 	local TitleBar = Instance.new("Frame")
@@ -30,24 +30,24 @@ function library:CreateWindow(name, version, icon)
 	for i = 1, math.random(3,20) do
 		RandomString = RandomString..string.char(math.random(97,122))
 	end
-	ProtectInstance(MyOilUpNiggers)
+	ProtectInstance(ValiantGui)
 	ProtectInstance(Window)
--- Assuming MyOilUpNiggers is already defined and parented somewhere above this code
+-- Assuming ValiantGui is already defined and parented somewhere above this code
 
--- Create a button to toggle MyOilUpNiggers visibility
+-- Create a button to toggle ValiantGui visibility
 local ToggleAmogusButton = Instance.new("TextButton")
 ToggleAmogusButton.Size = UDim2.new(0.1, 0.1, 0.1)
 ToggleAmogusButton.Position = UDim2.new(0, 10, 0, 10)
 ToggleAmogusButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 ToggleAmogusButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 ToggleAmogusButton.Text = "Hide"
-ToggleAmogusButton.Parent = MyOilUpNiggers
+ToggleAmogusButton.Parent = ValiantGui
 
--- Function to toggle MyOilUpNiggers visibility
+-- Function to toggle ValiantGui visibility
 local function ToggleVisibility()
      
     if Window.Size == UDim2.new(0, 0, 0, 0) then
-        Window.Size = UDim2.new(0, 400,0, 266.67)
+        Window.Size = UDim2.new(0, size1,0, size2)
         ToggleAmogusButton.Text = "Hide"
         
     else
@@ -61,12 +61,12 @@ end
 ToggleAmogusButton.MouseButton1Click:Connect(ToggleVisibility)
 
 
-	MyOilUpNiggers.Name = RandomString
-	MyOilUpNiggers.Parent = cloneref(game:GetService("CoreGui"))
-	MyOilUpNiggers.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	ValiantGui.Name = RandomString
+	ValiantGui.Parent = cloneref(game:GetService("CoreGui"))
+	ValiantGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 	Window.Name = "Window"
-	Window.Parent = MyOilUpNiggers
+	Window.Parent = ValiantGui
 	Window.BackgroundColor3 = Color3.fromRGB(49, 49, 59)
 	Window.Position = UDim2.new(0.5, -300, 0.600000024, -200)
 	Window.Size = UDim2.new(0, 0, 0, 0)
@@ -145,6 +145,20 @@ ToggleAmogusButton.MouseButton1Click:Connect(ToggleVisibility)
 	Minimize.Size = UDim2.new(0, 26, 0, 30)
 	Minimize.Image = "http://www.roblox.com/asset/?id=6035067836"
 
+
+
+-- Function to calculate size1 and size2
+local function calculateSizes()
+    local guiSize = ValiantGui.AbsoluteSize
+    local size1 = guiSize.X / 1.8
+    local size2 = guiSize.Y / 2
+
+    return size1, size2
+end
+
+-
+local size1, size2 = calculateSizes()
+
 	_4pxShadow2px_2.Name = "4pxShadow(2px)"
 	_4pxShadow2px_2.Parent = Window
 	_4pxShadow2px_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -159,24 +173,24 @@ ToggleAmogusButton.MouseButton1Click:Connect(ToggleVisibility)
 	_4pxShadow2px_2.SliceCenter = Rect.new(17, 17, 283, 283)
 
 	Close.MouseButton1Click:Connect(function()
-		TS:Create(Window, TweenInfo.new(0.5), {Size = UDim2.new(0, 400, 0, 0)}):Play()
+		TS:Create(Window, TweenInfo.new(0.5), {Size = UDim2.new(0, size1, 0, 0)}):Play()
 		repeat
 			wait()
-		until Window.Size == UDim2.new(0, 400, 0, 0)
+		until Window.Size == UDim2.new(0, size1, 0, 0)
 		wait(0.1)
 		TS:Create(Window, TweenInfo.new(0.5), {Size = UDim2.new(0, 0, 0, 0)}):Play()
 		repeat
 			wait()
 		until Window.Size == UDim2.new(0, 0, 0, 0)
-		MyOilUpNiggers:Remove()
+		ValiantGui:Remove()
 	end)
 
 	Minimize.MouseButton1Click:Connect(function()
 		if not MinimizeGui then
 			MinimizeGui = true
-			if Window.Size == UDim2.new(0, 400,0, 266.67) then
-				TS:Create(Window, TweenInfo.new(0.25), {Size = UDim2.new(0, 400,0, 32)}):Play()
-				repeat wait() until Window.Size == UDim2.new(0, 400,0, 32)
+			if Window.Size == UDim2.new(0, size1,0, size2) then
+				TS:Create(Window, TweenInfo.new(0.25), {Size = UDim2.new(0, size1,0, 32)}):Play()
+				repeat wait() until Window.Size == UDim2.new(0, size1,0, 32)
 				if Page and Page.Visible == true then
 					Page.Visible = false
 				end
@@ -186,14 +200,14 @@ ToggleAmogusButton.MouseButton1Click:Connect(ToggleVisibility)
 			end
 		else
 			MinimizeGui = false
-			if Window.Size == UDim2.new(0, 400,0, 32) then
+			if Window.Size == UDim2.new(0, size1,0, 32) then
 				if Page and Page.Visible == true then
 					Page.Visible = false
 				end
 				if Tabs and Tabs.Visible == true then
 					Tabs.Visible = false
 				end
-				TS:Create(Window, TweenInfo.new(0.25), {Size = UDim2.new(0, 400,0, 266.67)}):Play()
+				TS:Create(Window, TweenInfo.new(0.25), {Size = UDim2.new(0, size1,0, size2)}):Play()
 			end
 		end
 	end)
@@ -287,10 +301,10 @@ end
 
 
 	dragify(Window)
-	TS:Create(Window, TweenInfo.new(0.5), {Size = UDim2.new(0, 400, 0, 0)}):Play()
-	repeat wait() until Window.Size == UDim2.new(0, 400, 0, 0)
+	TS:Create(Window, TweenInfo.new(0.5), {Size = UDim2.new(0, size1, 0, 0)}):Play()
+	repeat wait() until Window.Size == UDim2.new(0, size1, 0, 0)
 	wait(0.1)
-	TS:Create(Window, TweenInfo.new(0.5), {Size = UDim2.new(0, 400, 0, 266.67)}):Play()
+	TS:Create(Window, TweenInfo.new(0.5), {Size = UDim2.new(0, size1, 0, size2)}):Play()
 dragify2(ToggleAmogusButton)
 	--end
 	local tabs = {}
@@ -1591,7 +1605,7 @@ dragify2(ToggleAmogusButton)
 				local Sample_2 = Instance.new("ImageLabel")
 
 				Notification2.Name = "Notification 2"
-				Notification2.Parent = MyOilUpNiggers
+				Notification2.Parent = ValiantGui
 				Notification2.BackgroundColor3 = Color3.fromRGB(49, 49, 59)
 				Notification2.Position = UDim2.new(1.25, -390, 0, 900)
 				Notification2.Size = UDim2.new(0, 344, 0, 64)
