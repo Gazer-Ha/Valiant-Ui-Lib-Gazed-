@@ -18,6 +18,10 @@ local UIS = game:GetService("UserInputService")
 
 local TS = game:GetService("TweenService")
 
+local screenSize = workspace.CurrentCamera.ViewportSize
+local minSize = math.min(screenSize.X, screenSize.Y)
+local gaysize = minSize / 0.8 
+
 function library:CreateWindow(name, version, icon)
 
 	name = name or "Name"
@@ -91,9 +95,6 @@ ToggleHideButton.Parent = InsaneGay
 -- Function to toggle InsaneGay visibility
 
 local function ToggleVisibility()
-
-     
-
     if Window.Size == UDim2.new(0, 0, 0, 0) then
 
         Window.Size = UDim2.new(0, gaysize,0, gaysize)
@@ -131,9 +132,7 @@ ToggleHideButton.MouseButton1Click:Connect(ToggleVisibility)
 	InsaneGay.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 	
-    local screenSize = workspace.CurrentCamera.ViewportSize
-local minSize = math.min(screenSize.X, screenSize.Y)
-local gaysize = minSize / 0.8 -- Adjust the multiplier as needed for your desired size
+    
 
 
         
