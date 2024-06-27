@@ -47,7 +47,7 @@ ToggleHideButton.Parent = InsaneGay
 local function ToggleVisibility()
      
     if Window.Size == UDim2.new(0, 0, 0, 0) then
-        Window.Size = UDim2.new(0, 400,0, 266.67)
+        Window.Size = UDim2.new(0, size1,0, size2)
         ToggleHideButton.Text = "Hide"
         
     else
@@ -64,6 +64,17 @@ ToggleHideButton.MouseButton1Click:Connect(ToggleVisibility)
 	InsaneGay.Name = RandomString
 	InsaneGay.Parent = cloneref(game:GetService("CoreGui"))
 	InsaneGay.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	
+
+local function calculateSizes()
+    local guiSize = InsaneGay.AbsoluteSize
+    local size1 = guiSize.X / 1.8
+    local size2 = guiSize.Y / 2
+
+    return size1, size2
+end
+
+local size1, size2 = calculateSizes()
 
 	Window.Name = "Window"
 	Window.Parent = InsaneGay
@@ -159,10 +170,10 @@ ToggleHideButton.MouseButton1Click:Connect(ToggleVisibility)
 	_4pxShadow2px_2.SliceCenter = Rect.new(17, 17, 283, 283)
 
 	Close.MouseButton1Click:Connect(function()
-		TS:Create(Window, TweenInfo.new(0.5), {Size = UDim2.new(0, 400, 0, 0)}):Play()
+		TS:Create(Window, TweenInfo.new(0.5), {Size = UDim2.new(0, size1, 0, 0)}):Play()
 		repeat
 			wait()
-		until Window.Size == UDim2.new(0, 400, 0, 0)
+		until Window.Size == UDim2.new(0, size1, 0, 0)
 		wait(0.1)
 		TS:Create(Window, TweenInfo.new(0.5), {Size = UDim2.new(0, 0, 0, 0)}):Play()
 		repeat
@@ -174,9 +185,9 @@ ToggleHideButton.MouseButton1Click:Connect(ToggleVisibility)
 	Minimize.MouseButton1Click:Connect(function()
 		if not MinimizeGui then
 			MinimizeGui = true
-			if Window.Size == UDim2.new(0, 400,0, 266.67) then
-				TS:Create(Window, TweenInfo.new(0.25), {Size = UDim2.new(0, 400,0, 32)}):Play()
-				repeat wait() until Window.Size == UDim2.new(0, 400,0, 32)
+			if Window.Size == UDim2.new(0, size1,0, size2) then
+				TS:Create(Window, TweenInfo.new(0.25), {Size = UDim2.new(0, size1,0, 32)}):Play()
+				repeat wait() until Window.Size == UDim2.new(0, size1,0, 32)
 				if Page and Page.Visible == true then
 					Page.Visible = false
 				end
@@ -186,14 +197,14 @@ ToggleHideButton.MouseButton1Click:Connect(ToggleVisibility)
 			end
 		else
 			MinimizeGui = false
-			if Window.Size == UDim2.new(0, 400,0, 32) then
+			if Window.Size == UDim2.new(0, size1,0, 32) then
 				if Page and Page.Visible == true then
 					Page.Visible = false
 				end
 				if Tabs and Tabs.Visible == true then
 					Tabs.Visible = false
 				end
-				TS:Create(Window, TweenInfo.new(0.25), {Size = UDim2.new(0, 400,0, 266.67)}):Play()
+				TS:Create(Window, TweenInfo.new(0.25), {Size = UDim2.new(0, size1,0, size2)}):Play()
 			end
 		end
 	end)
@@ -287,10 +298,10 @@ end
 
 
 	dragify(Window)
-	TS:Create(Window, TweenInfo.new(0.5), {Size = UDim2.new(0, 400, 0, 0)}):Play()
-	repeat wait() until Window.Size == UDim2.new(0, 400, 0, 0)
+	TS:Create(Window, TweenInfo.new(0.5), {Size = UDim2.new(0, size1, 0, 0)}):Play()
+	repeat wait() until Window.Size == UDim2.new(0, size1, 0, 0)
 	wait(0.1)
-	TS:Create(Window, TweenInfo.new(0.5), {Size = UDim2.new(0, 400, 0, 266.67)}):Play()
+	TS:Create(Window, TweenInfo.new(0.5), {Size = UDim2.new(0, size1, 0, size2)}):Play()
 dragify2(ToggleHideButton)
 	--end
 	local tabs = {}
