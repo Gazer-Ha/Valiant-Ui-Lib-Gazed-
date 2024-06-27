@@ -104,11 +104,8 @@ local gaysize = minSize / 0.8
         Window.Size = UDim2.new(0, gaysize,0, gaysize)
 
         ToggleHideButton.Text = "Hide"
-end
-        
 
-    else
-
+else 
     Window.Size = UDim2.new(0, 0, 0, 0)
 
         ToggleHideButton.Text = "Show"
