@@ -133,7 +133,7 @@ ToggleHideButton.MouseButton1Click:Connect(ToggleVisibility)
 	
     local screenSize = workspace.CurrentCamera.ViewportSize
 local minSize = math.min(screenSize.X, screenSize.Y)
-local gaysize = minSize / 1.8 -- Adjust the multiplier as needed for your desired size
+local gaysize = minSize / 3 -- Adjust the multiplier as needed for your desired size
 
 
         
