@@ -99,7 +99,7 @@ local function ToggleVisibility()
     
 local screenSize = workspace.CurrentCamera.ViewportSize
 local minSize = math.min(screenSize.X, screenSize.Y)
-local gaysize = minSize / 0.8 
+local gaysize = minSize / 1.2 
 
         Window.Size = UDim2.new(0, gaysize,0, gaysize)
 
