@@ -20,7 +20,7 @@ local TS = game:GetService("TweenService")
 
 local screenSize = workspace.CurrentCamera.ViewportSize
 local minSize = math.min(screenSize.X, screenSize.Y)
-local gaysize = minSize / 0.8
+local gaysize = minSize / 0.2
 
 function library:CreateWindow(name, version, icon)
 
