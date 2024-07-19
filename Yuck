@@ -21,7 +21,6 @@ local TS = game:GetService("TweenService")
 local screenSize = workspace.CurrentCamera.ViewportSize
 local minSize = math.min(screenSize.X, screenSize.Y)
 local gaysize = minSize / 0.8
-local gayestsize = minSize / 2
 
 function library:CreateWindow(name, version, icon)
 
@@ -101,8 +100,6 @@ local function ToggleVisibility()
 local screenSize = workspace.CurrentCamera.ViewportSize
 local minSize = math.min(screenSize.X, screenSize.Y)
 local gaysize = minSize / 0.8
-
-local gayestsize = minSize / 2
 
         Window.Size = UDim2.new(0, gaysize,0, gaysize)
 
@@ -353,19 +350,19 @@ ToggleHideButton.MouseButton1Click:Connect(ToggleVisibility)
 
 			if Window.Size == UDim2.new(0, gaysize,0, gaysize) then
 
-				TS:Create(Window, TweenInfo.new(0.25), {Size = UDim2.new(0, gayestsize,0, gayestsize)}):Play()
+				TS:Create(Window, TweenInfo.new(0.25), {Size = UDim2.new(0, gaysize,0, 32)}):Play()
 
 				repeat wait() until Window.Size == UDim2.new(0, gaysize,0, 32)
 
 				if Page and Page.Visible == true then
 
-					Page.Visible = true
+					Page.Visible = false
 
 				end
 
 				if Tabs and Tabs.Visible == true then
 
-					Tabs.Visible = true
+					Tabs.Visible = false
 
 				end
 
