@@ -21,6 +21,7 @@ local TS = game:GetService("TweenService")
 local screenSize = workspace.CurrentCamera.ViewportSize
 local minSize = math.min(screenSize.X, screenSize.Y)
 local gaysize = minSize / 0.8
+local gayestsize = gaysize / 3 
 
 function library:CreateWindow(name, version, icon)
 
@@ -324,7 +325,7 @@ ToggleHideButton.MouseButton1Click:Connect(ToggleVisibility)
 
 			wait()
 
-		until Window.Size == UDim2.new(0, gaysize / 3, 0, gaysize / 3)
+		until Window.Size == UDim2.new(0, gayestsize, 0, gayestsize)
 
 		wait(0.1)
 
@@ -576,7 +577,7 @@ end
 
 	TS:Create(Window, TweenInfo.new(0.5), {Size = UDim2.new(0, gaysize, 0, 0)}):Play()
 
-	repeat wait() until Window.Size == UDim2.new(0, gaysize / 3, 0, gaysize / 3)
+	repeat wait() until Window.Size == UDim2.new(0, gayestsize, 0, gayestsize)
 
 	wait(0.1)
 
