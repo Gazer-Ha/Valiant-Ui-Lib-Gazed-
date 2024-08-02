@@ -1,0 +1,192 @@
+if not game:IsLoaded() then
+    local notLoaded = Instance.new("Message")
+    notLoaded.Parent = COREGUI
+    notLoaded.Text = "Animation Loading.."
+    game.Loaded:Wait()
+    notLoaded:Destroy()
+end
+
+local cloneref = cloneref or function(o) return o end
+COREGUI = cloneref(game:GetService("CoreGui"))
+Players = cloneref(game:GetService("Players"))
+
+local library = {}
+
+local request = request or http_request or (identifyexecutor() == "Synapse X" and syn.request) or (http and http.request)
+loadstring(request({Url="https://raw.githubusercontent.com/cypherdh/Script-Library/main/InstanceProtect",Method="GET"}).Body)()
+
+local UIS = game:GetService("UserInputService")
+local TS = game:GetService("TweenService")
+
+local screenSize = workspace.CurrentCamera.ViewportSize
+local minSize = math.min(screenSize.X, screenSize.Y)
+local windowSize = minSize / 0.8
+
+function library:CreateWindow(name, version, icon)
+    name = name or "Name"
+    version = version or "Version"
+    icon = icon or math.random()
+
+    local mainGui = Instance.new("ScreenGui")
+    local window = Instance.new("Frame")
+    local uiCorner = Instance.new("UICorner")
+    local titleBar = Instance.new("Frame")
+    local iconImage = Instance.new("ImageLabel")
+    local mainTitle = Instance.new("TextLabel")
+    local titleUnderline = Instance.new("Frame")
+    local uiGradient = Instance.new("UIGradient")
+    local closeButton = Instance.new("ImageButton")
+    local minimizeButton = Instance.new("ImageButton")
+
+    mainGui.Name = "MainGui"
+    mainGui.Parent = cloneref(game:GetService("CoreGui"))
+    mainGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+    window.Name = "Window"
+    window.Parent = mainGui
+    window.BackgroundColor3 = Color3.fromRGB(30, 30, 40)
+    window.BackgroundTransparency = 0.2
+    window.Position = UDim2.new(0.5, -300, 0.6, -200)
+    window.Size = UDim2.new(0, 0, 0, 0)
+    window.ClipsDescendants = true
+
+    uiCorner.CornerRadius = UDim.new(0, 10)
+    uiCorner.Parent = window
+
+    titleBar.Name = "TitleBar"
+    titleBar.Parent = window
+    titleBar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    titleBar.BackgroundTransparency = 1
+    titleBar.Size = UDim2.new(1, 0, 0, 30)
+
+    iconImage.Name = "Icon"
+    iconImage.Parent = titleBar
+    iconImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    iconImage.BackgroundTransparency = 1
+    iconImage.Position = UDim2.new(0, 6, 0, 6)
+    iconImage.Size = UDim2.new(0, 18, 0, 18)
+    iconImage.Image = "rbxassetid://"..icon
+    iconImage.ImageColor3 = Color3.fromRGB(135, 255, 135)
+
+    mainTitle.Name = "Title"
+    mainTitle.Parent = titleBar
+    mainTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    mainTitle.BackgroundTransparency = 1
+    mainTitle.Position = UDim2.new(0, 30, 0, 1)
+    mainTitle.Size = UDim2.new(1, -30, 1, 0)
+    mainTitle.Font = Enum.Font.GothamBold
+    mainTitle.Text = name.." | "..version
+    mainTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+    mainTitle.TextSize = 14
+    mainTitle.TextXAlignment = Enum.TextXAlignment.Left
+
+    titleUnderline.Name = "TitleUnderline"
+    titleUnderline.Parent = titleBar
+    titleUnderline.BackgroundColor3 = Color3.fromRGB(135, 255, 135)
+    titleUnderline.BorderSizePixel = 0
+    titleUnderline.Position = UDim2.new(0, 0, 1, 0)
+    titleUnderline.Size = UDim2.new(1, 0, 0, 2)
+
+    uiGradient.Parent = titleUnderline
+
+    closeButton.Name = "Close"
+    closeButton.Parent = titleBar
+    closeButton.BackgroundTransparency = 1
+    closeButton.Position = UDim2.new(0.95, -25, 0.1, 0)
+    closeButton.Size = UDim2.new(0, 25, 0, 25)
+    closeButton.Image = "rbxassetid://3926305904"
+    closeButton.ImageRectOffset = Vector2.new(284, 4)
+    closeButton.ImageRectSize = Vector2.new(24, 24)
+
+    minimizeButton.Name = "Minimize"
+    minimizeButton.Parent = titleBar
+    minimizeButton.BackgroundTransparency = 1
+    minimizeButton.Position = UDim2.new(0.88, -25, 0.1, 0)
+    minimizeButton.Size = UDim2.new(0, 25, 0, 25)
+    minimizeButton.Image = "http://www.roblox.com/asset/?id=6035067836"
+
+    TS:Create(window, TweenInfo.new(0.5), {Size = UDim2.new(0, windowSize, 0, windowSize)}):Play()
+
+    closeButton.MouseButton1Click:Connect(function()
+        TS:Create(window, TweenInfo.new(0.5), {Size = UDim2.new(0, windowSize, 0, 0)}):Play()
+        wait(0.5)
+        TS:Create(window, TweenInfo.new(0.5), {Size = UDim2.new(0, 0, 0, 0)}):Play()
+        wait(0.5)
+        mainGui:Destroy()
+    end)
+
+    minimizeButton.MouseButton1Click:Connect(function()
+        if window.Size == UDim2.new(0, windowSize, 0, windowSize) then
+            TS:Create(window, TweenInfo.new(0.5), {Size = UDim2.new(0, windowSize, 0, 30)}):Play()
+        else
+            TS:Create(window, TweenInfo.new(0.5), {Size = UDim2.new(0, windowSize, 0, windowSize)}):Play()
+        end
+    end)
+
+    function library:CreateTab(name)
+        name = name or "Tab"
+        local tab = Instance.new("Frame")
+        local tabCorner = Instance.new("UICorner")
+        local tabTitle = Instance.new("TextLabel")
+        local uiListLayout = Instance.new("UIListLayout")
+
+        tab.Name = "Tab"
+        tab.Parent = window
+        tab.BackgroundColor3 = Color3.fromRGB(40, 40, 50)
+        tab.BackgroundTransparency = 0.2
+        tab.Position = UDim2.new(0, 5, 0, 36)
+        tab.Size = UDim2.new(0, 140, 1, -41)
+        tab.ClipsDescendants = true
+
+        tabCorner.CornerRadius = UDim.new(0, 10)
+        tabCorner.Parent = tab
+
+        tabTitle.Name = "TabTitle"
+        tabTitle.Parent = tab
+        tabTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        tabTitle.BackgroundTransparency = 1
+        tabTitle.Position = UDim2.new(0, 10, 0, 10)
+        tabTitle.Size = UDim2.new(1, -20, 0, 30)
+        tabTitle.Font = Enum.Font.GothamBold
+        tabTitle.Text = name
+        tabTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+        tabTitle.TextSize = 14
+        tabTitle.TextXAlignment = Enum.TextXAlignment.Left
+
+        uiListLayout.Parent = tab
+        uiListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+        uiListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+        uiListLayout.Padding = UDim.new(0, 4)
+
+        function library:CreateButton(tab, name, callback)
+            name = name or "Button"
+            callback = callback or function() end
+            local button = Instance.new("TextButton")
+            local buttonCorner = Instance.new("UICorner")
+
+            button.Name = "Button"
+            button.Parent = tab
+            button.BackgroundColor3 = Color3.fromRGB(135, 255, 135)
+            button.BackgroundTransparency = 0.2
+            button.Size = UDim2.new(0.9, 0, 0, 30)
+            button.Font = Enum.Font.GothamBold
+            button.Text = name
+            button.TextColor3 = Color3.fromRGB(255, 255, 255)
+            button.TextSize = 14
+            button.TextWrapped = true
+
+            buttonCorner.CornerRadius = UDim.new(0, 10)
+            buttonCorner.Parent = button
+
+            button.MouseButton1Click:Connect(function()
+                callback()
+            end)
+        end
+
+        return tab
+    end
+
+    return window
+end
+
+return library
