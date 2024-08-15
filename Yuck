@@ -4,11 +4,11 @@ local UIAnimationSpeed : number = 0.1;
 local TweenService = game:GetService("TweenService")
 
 -- init
-local ScreenGui = instance.new("ScreenGui")
-ScreenGui["Parent"] = game:GetService("Players").LocalPlayer:FindFirstChildWhichIsA("PlayerGui")
-ScreenGui["Name"] = "cofsSKID";
-ScreenGui["ResetOnSpawn"] = false;
-ScreenGui["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Parent = game:GetService("Players").LocalPlayer:FindFirstChildWhichIsA("PlayerGui")
+ScreenGui.Name = "cofsSKID"
+ScreenGui.ResetOnSpawn = false
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 function Kings.newWindow(windowName, windowSettings)
 	if windowName == nil then
