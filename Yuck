@@ -4,7 +4,7 @@ local UIAnimationSpeed : number = 0.1;
 local TweenService = game:GetService("TweenService")
 
 -- init
-local ScreenGui = cloneref(game:GetService("CoreGui"));
+local ScreenGui = instance.new("ScreenGui")
 ScreenGui["Parent"] = game:GetService("Players").LocalPlayer:FindFirstChildWhichIsA("PlayerGui")
 ScreenGui["Name"] = "cofsSKID";
 ScreenGui["ResetOnSpawn"] = false;
