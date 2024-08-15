@@ -1,11 +1,10 @@
-COREGUI = cloneref(game:GetService("CoreGui"))
 
 local Kings = {};
 local UIAnimationSpeed : number = 0.1;
 local TweenService = game:GetService("TweenService")
 
 -- init
-local ScreenGui = script.Parent.Parent;
+local ScreenGui = cloneref(game:GetService("CoreGui"));
 ScreenGui["Parent"] = game:GetService("Players").LocalPlayer:FindFirstChildWhichIsA("PlayerGui")
 ScreenGui["Name"] = "cofsSKID";
 ScreenGui["ResetOnSpawn"] = false;
@@ -17,7 +16,7 @@ function Kings.newWindow(windowName, windowSettings)
 	end
 
 	-- the new window frame
-	local newWindow = Instance.new("Frame", COREGUI);
+	local newWindow = Instance.new("Frame", ScreenGui);
 	newWindow["BorderSizePixel"] = 0;
 	newWindow["BackgroundColor3"] = Color3.fromRGB(50, 50, 50);
 	newWindow["Size"] = UDim2.new(0, 300, 0, 400);
