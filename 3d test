@@ -6,8 +6,8 @@ local Players = game:GetService("Players")
 function create3DPanel(position, size)
     -- Create a thin part that will serve as the panel
     local panel = Instance.new("Part")
-    panel.Size = Vector3.new(size.X, size.Y, 0.1) -- Very thin Z-axis (0.1)
-    panel.Position = position
+    panel.Size = Vector3.new(10, 5, 0.1) -- Very thin Z-axis (0.1)
+    panel.Position = Vector3.new(0, 5, 0)
     panel.Anchored = true
     panel.CanCollide = false
     panel.Name = "3DPanel"
@@ -60,12 +60,7 @@ function create3DPanel(position, size)
     end)
 end
 
--- Example usage:
-local position = Vector3.new(0, 5, 0) -- Initial position of the panel
-local panelSize = Vector3.new(10, 5, 0.1) -- Very thin panel
 
--- Call the function to create the panel and loop the tween
-create3DPanel(position, panelSize)
 
 
 
@@ -205,7 +200,7 @@ ToggleHideButton.MouseButton1Click:Connect(ToggleVisibility)
 
 	InsaneGay.Name = RandomString
 
-	InsaneGay.Parent = panel
+	InsaneGay.Parent = cloneref(game:GetService("CoreGui"))
 
 	InsaneGay.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
