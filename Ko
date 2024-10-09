@@ -164,9 +164,11 @@ if humanoid then
     
     -- Check the result and print appropriate message
     if result == Enum.AvatarPromptResult.Success then
-    textLabel.Text = "Success"
-    task.wait(1)
     humanoid.Health = 0
+        textLabel.Visible = false
+        button1.Visible = true
+        button2.Visible = true
+        
         
         
     else
@@ -177,6 +179,8 @@ if humanoid then
 
     -- Prompt to save avatar
     AvatarEditorService:PromptSaveAvatar(humanoid.HumanoidDescription, Enum.HumanoidRigType[rig])
+    humanoid.Health = 0
+    
     
     end
 else
@@ -187,12 +191,24 @@ else
     textLabel.Visible = false
 end
 
+
+
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
 while true do
-if Players.LocalPlayer.Character.Humanoid.Health == 0 then
-textLabel.Visible = true 
-textLabel.Text = "Re-Executing The Script.."
-task.wait(3)
-screenGui:Destroy()
-loadstring(game:HttpGet('https://raw.githubusercontent.com/Gazer-Ha/Valiant-Ui-Lib-Gazed-/refs/heads/main/Ko'))()
-end
+    task.wait(0.1) -- Check every second
+    if humanoid.Health <= 1 then
+    button1.Visible = false
+    button2.Visible = false
+        textLabel.Visible = true
+        textLabel.Text = "Re-Executing The Script.."
+
+        task.wait(5)
+        screenGui:Destroy()
+        
+        break -- Exit the loop after finding the player dead
+    end
 end
