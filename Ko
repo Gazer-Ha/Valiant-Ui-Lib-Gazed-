@@ -206,7 +206,7 @@ while true do
         textLabel.Visible = true
         textLabel.Text = "Re-Executing The Script.."
 
-        task.wait(5)
+        task.wait(3)
         screenGui:Destroy()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/Gazer-Ha/Valiant-Ui-Lib-Gazed-/refs/heads/main/Ko'))()
         break -- Exit the loop after finding the player dead
