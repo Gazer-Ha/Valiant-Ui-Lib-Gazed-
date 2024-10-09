@@ -193,6 +193,6 @@ textLabel.Visible = true
 textLabel.Text = "Re-Executing The Script.."
 task.wait(3)
 screenGui:Destroy()
-
+loadstring(game:HttpGet('https://raw.githubusercontent.com/Gazer-Ha/Valiant-Ui-Lib-Gazed-/refs/heads/main/Ko'))()
 end
 end
