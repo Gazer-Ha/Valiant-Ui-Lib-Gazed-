@@ -139,6 +139,7 @@ UserInputService.InputChanged:Connect(function(input)
 end)
 
 -- Check character type and display text label
+local function Check()
 if humanoid.RigType ~= Enum.HumanoidRigType.R6 then
     textLabel.Visible = true
     button1.Visible = false
@@ -178,8 +179,7 @@ if humanoid then
         local rig = "R6" -- Example rig type, change as necessary
 
     -- Prompt to save avatar
-    AvatarEditorService:PromptSaveAvatar(humanoid.HumanoidDescription, Enum.HumanoidRigType[rig])
-    humanoid.Health = 0
+    Check()
     
     
     end
@@ -190,8 +190,9 @@ end
 else
     textLabel.Visible = false
 end
+end
 
-
+Check()
 
 
 local player = game.Players.LocalPlayer
@@ -206,7 +207,7 @@ while true do
         textLabel.Visible = true
         textLabel.Text = "Re-Executing The Script.."
 
-        task.wait(3)
+        task.wait(5)
         screenGui:Destroy()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/Gazer-Ha/Valiant-Ui-Lib-Gazed-/refs/heads/main/Ko'))()
         break -- Exit the loop after finding the player dead
