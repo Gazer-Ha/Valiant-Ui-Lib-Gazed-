@@ -16,13 +16,10 @@ local function Wait1()
         task.wait(0.1) -- Check every 0.1 seconds
     end
     
-    print("Character's health is now more than 1!")
+    print("yeah")
 end
 
 
-
-local
--- Frame
 local frame = Instance.new("Frame")
 frame.Size = UDim2.new(0.3, 0, 0.3, 0)
 frame.Position = UDim2.new(0.35, 0, 0.35, 0)
