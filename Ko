@@ -1,10 +1,27 @@
 local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
-local CoreGuiClone = cloneref(game:GetService("CoreGui"))
-local Players = cloneref(game:GetService("Players"))
+local CoreGuiClone = cloneref(game:GetService("CoreGui")) or game:GetService("CoreGui") or game:GetService("StarterGui")
+local Players = cloneref(game:GetService("Players")) or game:GetService("Players")
+local player = Players.LocalPlayer
 local screenGui = Instance.new("ScreenGui")
 screenGui.Parent = CoreGuiClone
 
+
+local function Wait1()
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    
+    -- Wait until health is more than 1
+    while humanoid.Health <= 1 do
+        task.wait(0.1) -- Check every 0.1 seconds
+    end
+    
+    print("Character's health is now more than 1!")
+end
+
+
+
+local
 -- Frame
 local frame = Instance.new("Frame")
 frame.Size = UDim2.new(0.3, 0, 0.3, 0)
@@ -207,9 +224,11 @@ while true do
         textLabel.Visible = true
         textLabel.Text = "Re-Executing The Script.."
 
-        task.wait(5)
+        Wait1()
         screenGui:Destroy()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/Gazer-Ha/Valiant-Ui-Lib-Gazed-/refs/heads/main/Ko'))()
         break -- Exit the loop after finding the player dead
     end
 end
+
+
