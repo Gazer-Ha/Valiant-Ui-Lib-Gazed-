@@ -102,7 +102,7 @@ button1.MouseButton1Click:Connect(function()
         animationTrack:AdjustSpeed(0)
         local tween = TweenService:Create(weightValue, tweenInfo, {Value = 1})
         tween:Play()
-        button1.Text = "Stop Animation"
+        button1.Text = "Off"
         isPlaying = true
     else
         local tween = TweenService:Create(weightValue, tweenInfo, {Value = 0})
@@ -110,7 +110,7 @@ button1.MouseButton1Click:Connect(function()
         tween.Completed:Connect(function()
             animationTrack:Stop()
         end)
-        button1.Text = "Play Animation"
+        button1.Text = "On"
         isPlaying = false
     end
 end)
