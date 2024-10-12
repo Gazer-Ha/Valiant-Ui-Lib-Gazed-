@@ -7,17 +7,7 @@ local screenGui = Instance.new("ScreenGui")
 screenGui.Parent = CoreGuiClone
 
 
-local function Wait1()
-    local character = player.Character or player.CharacterAdded:Wait()
-    local humanoid = character:WaitForChild("Humanoid")
-    
-    -- Wait until health is more than 1
-    while humanoid.Health <= 1 do
-        task.wait(0.1) -- Check every 0.1 seconds
-    end
-    
-    print("yeah")
-end
+
 
 
 local frame = Instance.new("Frame")
@@ -214,18 +204,18 @@ local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:WaitForChild("Humanoid")
 
 while true do
-    task.wait(0.1) -- Check every second
+    task.wait(0.1)
     if humanoid.Health <= 1 then
-    button1.Visible = false
-    button2.Visible = false
+        button1.Visible = false
+        button2.Visible = false
         textLabel.Visible = true
         textLabel.Text = "Re-Executing The Script.."
 
-        Wait1()
-        screenGui:Destroy()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/Gazer-Ha/Valiant-Ui-Lib-Gazed-/refs/heads/main/head%20down'))()
-        break -- Exit the loop after finding the player dead
+    
+        task.wait(8)
+         screenGui:Destroy()
+            loadstring(game:HttpGet('https://raw.githubusercontent.com/Gazer-Ha/Valiant-Ui-Lib-Gazed-/refs/heads/main/Head%20Pack'))()
+        
+        break
     end
 end
-
-
