@@ -212,11 +212,9 @@ while true do
         textLabel.Text = "Re-Executing The Script.."
 
     
-        
-        player.CharacterAdded:Connect(function()
-            screenGui:Destroy()
+        task.wait(8)
+   
             loadstring(game:HttpGet('https://raw.githubusercontent.com/Gazer-Ha/Valiant-Ui-Lib-Gazed-/refs/heads/main/Head%20Pack'))()
-        end)
         
         break
     end
