@@ -106,7 +106,7 @@ local screenSize = workspace.CurrentCamera.ViewportSize
 local minSize = math.min(screenSize.X, screenSize.Y)
 local gaysize = minSize / 0.95
 
-        Window.Size = UDim2.new(0, gaysize,0, gaysize)
+        Window.Size = UDim2.new(0, gaysize / 0.8 ,0, gaysize)
 
         ToggleHideButton.Text = "Hide"
 
