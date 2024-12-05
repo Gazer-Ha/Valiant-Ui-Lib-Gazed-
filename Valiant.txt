@@ -25,7 +25,7 @@ local TS = game:GetService("TweenService")
 
 local screenSize = workspace.CurrentCamera.ViewportSize
 local minSize = math.min(screenSize.X, screenSize.Y)
-local gaysize = minSize / 0.925
+local gaysize = minSize / 0.95
 
 function library:CreateWindow(name, version, icon)
 
@@ -104,7 +104,7 @@ local function ToggleVisibility()
     
 local screenSize = workspace.CurrentCamera.ViewportSize
 local minSize = math.min(screenSize.X, screenSize.Y)
-local gaysize = minSize / 0.925
+local gaysize = minSize / 0.95
 
         Window.Size = UDim2.new(0, gaysize,0, gaysize)
 
